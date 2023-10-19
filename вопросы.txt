@@ -1,0 +1,119 @@
+1.Что такое объекты в JavaScript?
+Это очень важная часть языка, они помогают организовать данные, чтобы их было легко использовать, изменять и дополнять. Объекты состоят из ключей и связанных с ними значений значений.
+
+2.Как создать объект в JavaScript?
+через let как const как переменную, потом равно и в фигурных скобках пишутся пары ключ-значение в столбик.
+
+3.Как создать класс в JavaScript?
+Через ключевое слово class, потом название класса с большой буквы, внутри фигурных скобок пишется как бы шаблон кода для создания объектов.
+
+4.Как добавить методы в класс?
+методы объявляются внутри класса по сути как функция, не используя ключевое слово function.
+
+5.Как создать экземпляр класса?
+В сущности это реализация класса, то есть то что будет сделано по шаблону.
+К примеру const cat1 = new Cat("Murka", green); где Сat это класс, "Murka" и green - такие свойства как мия и цвет, а cat1 это собственно сам экземпляр.
+
+6.Что выведет код? 
+    
+    const person = {
+      name: "Алиса",
+      age: 25,
+    };
+    
+    console.log(person.name);
+Код выведет: Алиса.
+
+7.Что выведет код? Почему именно так? 
+const person = {
+	name: 'John',
+	age: 25,
+};
+
+let city = person.city;
+city = Moscow;
+
+console.log(person); 
+ Код выведет:	
+	person {
+	name: 'John',
+	age: 25,
+	city: Moscow,
+	};
+потому что там добавляется еще город.
+
+8.Что выведет код? Почему именно так?
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+
+  sound() {
+    console.log("Animal sound");
+  }
+}
+
+class Dog extends Animal {
+  sound() {
+    console.log("Woof!");
+  }
+}
+
+const dog = new Dog("Buddy");
+
+dog.sound(); //? 
+
+sound() был найден в классе Dog, именно поэтому выводится "Woof!".
+
+9.Что выведет код? Почему именно так? 
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  introduce() {
+    console.log(`Hi, my name is ${this.name} and I'm ${this.age} years old.`);
+  }
+}
+
+class Student extends Person {
+  constructor(name, age, major) {
+    super(name, age);
+    this.major = major;
+  }
+
+  study() {
+    console.log(`I'm studying ${this.major}.`);
+  }
+}
+
+const person = new Person("John", 25);
+const student = new Student("Alice", 20, "Computer Science");
+
+const introduceFunc = person.introduce;
+introduceFunc(); //?
+
+`Hi, my name is John and I'm 25 years old.`
+потому что создается person = new Person("John", 25); все this в приветствии относятся к Джону. 
+
+10.Что выведет код? Почему именно так? 
+function sayHello() {
+  console.log(`Hello, ${this.name}!`);
+}
+
+let name  = "Nina";
+
+const person1 = {
+  name: "Alice",
+  greet: sayHello
+};
+
+const person2 = {
+  name: "Bob",
+  greet: sayHello
+};
+
+sayHello();      // - здесь будет ошибка, потому что this не относится к объекту. Ну либо оно сошлется на какой-нибудь window или чтщ-то такое произойдет
+person1.greet(); // Hello, Alice!
+person2.greet(); // Hello, Bob!
